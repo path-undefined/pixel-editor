@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Pixel Editor</title>
+  </head>
+
+  <body>
+    <div id="app" class="app">
+      <div id="canvas-container" class="app__canvas-container">
+        <canvas id="canvas" class="app__canvas" tabindex="1"></canvas>
+      </div>
+
+      <div id="cmd-container" class="app__cmd-container">
+        <ul id="cmd-history" class="app__cmd-history"></ul>
+        <input
+          id="cmd-input"
+          class="app__cmd-input"
+          type="text"
+          tabindex="0"
+          placeholder="Input command here"
+        />
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

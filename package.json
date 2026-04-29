@@ -1,0 +1,21 @@
+{
+  "name": "pixel-editor",
+  "version": "1.0.0",
+  "description": "A keyboard based pixel editor which runs in browser.",
+  "public": false,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint ."
+  },
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.2.1",
+    "sass": "^1.99.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.59.1",
+    "vite": "^8.0.10"
+  }
+}
