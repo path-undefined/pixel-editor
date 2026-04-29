@@ -3,7 +3,17 @@ import { render } from "./render";
 
 export function initializeKeyboardControl(s: GlobalState) {
   s.elements.canvas.addEventListener("keydown", (ev) => {
-    if (ev.key === "ArrowUp") {
+    console.log(ev.key);
+
+    if (ev.key === " ") {
+      if (ev.shiftKey) {
+        s.canvas.buffer[s.canvas.cursorX]![s.canvas.cursorY]! = 0;
+        render(s);
+      } else {
+        s.canvas.buffer[s.canvas.cursorX]![s.canvas.cursorY]! = s.canvas.currentColor;
+        render(s);
+      }
+    } else if (ev.key === "ArrowUp") {
       s.canvas.cursorY = Math.max(s.canvas.cursorY - 1, 0);
       render(s);
     } else if (ev.key === "ArrowDown") {

@@ -47,6 +47,8 @@ export function initializeCanvas(s: GlobalState) {
     panX: 0,
     panY: 0,
     buffer,
+    currentColor: 1,
+    colorList: ["#ffffff", "#000000"],
   };
 
   initializeKeyboardControl(s);

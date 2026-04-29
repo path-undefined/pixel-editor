@@ -4,7 +4,10 @@ export function render(s: GlobalState) {
   renderBackground(s);
   for (let x = 0; x < s.canvas.sizeX; x++) {
     for (let y = 0; y < s.canvas.sizeY; y++) {
-      renderPixel(s, x, y);
+      const pixelColorIndex = s.canvas.buffer[x]![y]!;
+      const pixelColor = s.canvas.colorList[pixelColorIndex]!;
+
+      renderPixel(s, x, y, pixelColor);
     }
   }
   renderGrid(s);
@@ -54,19 +57,22 @@ function renderFrame(s: GlobalState) {
 
 }
 
-function renderPixel(s: GlobalState, x: number, y: number) {
+function renderPixel(s: GlobalState, x: number, y: number, color: string) {
   const [left, top] = bufferToCanvas(s, [x, y]);
 
-  s.canvas.ctx2d.fillStyle = "#ffffff";
+  s.canvas.ctx2d.fillStyle = color;
   s.canvas.ctx2d.fillRect(left, top, s.canvas.zoom, s.canvas.zoom);
 }
 
 function renderCursor(s: GlobalState) {
   const [x, y] = bufferToCanvas(s, [s.canvas.cursorX, s.canvas.cursorY]);
 
-  s.canvas.ctx2d.strokeStyle = "#ff0000";
-  s.canvas.ctx2d.lineWidth = 3;
-  s.canvas.ctx2d.strokeRect(x + 0.5, y + 0.5, s.canvas.zoom, s.canvas.zoom);
+  s.canvas.ctx2d.strokeStyle = "#000000";
+  s.canvas.ctx2d.lineWidth = 2;
+  s.canvas.ctx2d.strokeRect(x, y, s.canvas.zoom + 1, s.canvas.zoom + 1);
+
+  s.canvas.ctx2d.fillStyle = s.canvas.colorList[s.canvas.currentColor]!;
+  s.canvas.ctx2d.fillRect(x + 3, y + 3, s.canvas.zoom - 5, s.canvas.zoom - 5);
 }
 
 function bufferToCanvas(s: GlobalState, coord: [number, number]): [number, number] {

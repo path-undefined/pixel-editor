@@ -19,8 +19,8 @@ export type GlobalState = {
     cursorY: number
     panX: number
     panY: number
+    colorList: string[]
     currentColor: number
-    colorPalette: number[]
     buffer: number[][]
   }
 }
