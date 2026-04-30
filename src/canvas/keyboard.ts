@@ -5,14 +5,12 @@ export function initializeKeyboardControl(s: GlobalState) {
   s.elements.canvas.addEventListener("keydown", (ev) => {
     console.log(ev.key);
 
-    if (ev.key === " ") {
-      if (ev.shiftKey) {
-        s.canvas.buffer[s.canvas.cursorX]![s.canvas.cursorY]! = 0;
-        render(s);
-      } else {
-        s.canvas.buffer[s.canvas.cursorX]![s.canvas.cursorY]! = s.canvas.currentColor;
-        render(s);
-      }
+    if (ev.key === "Delete" || ev.key === "Backspace") {
+      s.canvas.buffer[s.canvas.cursorX]![s.canvas.cursorY]! = 0;
+      render(s);
+    } else if (ev.key === " ") {
+      s.canvas.buffer[s.canvas.cursorX]![s.canvas.cursorY]! = s.canvas.currentColor;
+      render(s);
     } else if (ev.key === "ArrowUp") {
       s.canvas.cursorY = Math.max(s.canvas.cursorY - 1, 0);
       render(s);
@@ -24,6 +22,12 @@ export function initializeKeyboardControl(s: GlobalState) {
       render(s);
     } else if (ev.key === "ArrowRight") {
       s.canvas.cursorX = Math.min(s.canvas.cursorX + 1, s.canvas.sizeX - 1);
+      render(s);
+    } else if (ev.ctrlKey && ev.key === "]") {
+      s.canvas.zoom += 2;
+      render(s);
+    } else if (ev.ctrlKey && ev.key === "[") {
+      s.canvas.zoom = Math.max(s.canvas.zoom - 2, 8);
       render(s);
     }
   });
