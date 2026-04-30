@@ -23,10 +23,10 @@ export function initializeKeyboardControl(s: GlobalState) {
     } else if (ev.key === "ArrowRight") {
       s.canvas.cursorX = Math.min(s.canvas.cursorX + 1, s.canvas.sizeX - 1);
       render(s);
-    } else if (ev.ctrlKey && ev.key === "]") {
+    } else if (ev.key === "]") {
       s.canvas.zoom += 2;
       render(s);
-    } else if (ev.ctrlKey && ev.key === "[") {
+    } else if (ev.key === "[") {
       s.canvas.zoom = Math.max(s.canvas.zoom - 2, 8);
       render(s);
     }
